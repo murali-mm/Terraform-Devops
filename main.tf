@@ -6,16 +6,12 @@ terraform {
     }
   }
 }
-/*
 provider "azurerm" {
   #resource_provider_registrations = "none" # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
   features {}
-  client_id = 55f5a120-b536-40aa-b9b1-88bb8a101048
-  tenant_id = 518b32b2-b122-43e7-a766-960beb7499f3
-  client_secret = D2A8Q~tCnTiQytGEyg6jPgXIgwgoXeiFh1Cntbge
-  subscription_id = 9f1d9528-b481-43e9-9ac6-aa5ee102f2ff
 }
 
+/*
 terraform {
   backend "azurerm" {
   access_key           = "kNm8tvv3Eqz+FuYOi3qJBxzdtDuUuSpbUmGKz7Qgu1YmcGLqUSZnzEa+4WPuyLguYmG46ueMobEX+ASt/8Epuw=="  # Can also be set via `ARM_ACCESS_KEY` environment variable.
@@ -25,11 +21,12 @@ terraform {
   }
 }
 
+*/
+
 resource "azurerm_resource_group" "rg" {
   name = "${var.rgname}"
   location = "${var.rglocation}"
 }
-*/
 locals {
    env = "dev"
 }
@@ -88,7 +85,6 @@ resource "azurerm_network_security_group" "nsg1" {
   }
 }
 
-/*
 resource "azurerm_windows_virtual_machine" "vm1" {
   name                = "terra-machine"
   resource_group_name = azurerm_resource_group.rg.name
@@ -112,7 +108,6 @@ resource "azurerm_windows_virtual_machine" "vm1" {
     version   = "latest"
   }
 }
-*/
 resource "azurerm_app_service_plan" "app-plan" {
   name                = "webapp-appserviceplan"
   location            = azurerm_resource_group.rg.location
@@ -132,9 +127,6 @@ resource "azurerm_app_service" "webapp" {
   app_service_plan_id = azurerm_app_service_plan.app-plan.id
 
 }
-
-
-/*
   site_config {
     dotnet_framework_version = "v4.0"
     scm_type                 = "LocalGit"
