@@ -1,3 +1,3 @@
-rglocation = "Centra India"
+rglocation = "CentralIndia"
 rgname = "terraform-rg"
 
